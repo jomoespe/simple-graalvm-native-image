@@ -1,5 +1,6 @@
-# Project binary files
+# Project files
 target/
+dependency-reduced-pom.xml
 
 # VSCode files
 .settings/
