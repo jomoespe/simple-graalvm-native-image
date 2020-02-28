@@ -2,12 +2,14 @@
 
 ## TL;DR
 
+Build the container with the binary
+
 ```bash
-# build the binary in a container
 make jar docker
+```
 
-# run the container
-docker run --rm -ti hello
+Run the container
 
-docker run --rm -ti hello GraalVM
+```bash
+docker run --rm -ti hello [-n | --name <name>]
 ```
