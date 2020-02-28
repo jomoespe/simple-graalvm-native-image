@@ -1,25 +1,26 @@
 package com.jomoespe;
 
+import java.util.function.Supplier;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-public class Hello {
-    public static void main(String... args) throws ParseException {
-        Options options = new Options();
+public final class Hello {
+    public static void main(final String... args) throws ParseException {
+        CommandLine cmd = commandLine(Hello::options, () -> args);
+        System.out.printf("Hello %s!\n", cmd.getOptionValue("name", "world"));
+    }
 
-        Option nameOpt = new Option("n", "name", true, "input file path");
-        nameOpt.setRequired(false);
-        options.addOption(nameOpt);
-
+    private static CommandLine commandLine(final Supplier<Options> options, final Supplier<String[]> args) throws ParseException {
         CommandLineParser parser = new DefaultParser();
-        //HelpFormatter formatter = new HelpFormatter();
-        CommandLine cmd = parser.parse(options, args);
+        return parser.parse(options.get(), args.get());
+    }
 
-        String name = cmd.getOptionValue("name", "world");
-        System.out.printf("Hello %s!!\n", name);
+    private static Options options() {
+        return new Options()
+            .addOption("n", "name", true, "the name to be salutated");
     }
 }
