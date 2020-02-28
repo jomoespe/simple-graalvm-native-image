@@ -1,12 +1,5 @@
 jar:
-	@ mvn clean package
+	@ mvn clean verify
 
-run:
-	@ java -cp . hello.Hello
-
-docker:
+docker: jar
 	@ docker build -t hello .
-
-docker-run:
-	@ docker run -ti hello
- 
