@@ -1,0 +1,8 @@
+# Project binary files
+target/
+
+# VSCode files
+.settings/
+.vscode/
+.project
+.classpath
